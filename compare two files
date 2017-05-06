@@ -1,0 +1,72 @@
+first=raw_input("What is the First File name : ")
+second=raw_input("what is the second File name: ")
+
+print "#######################################################"
+
+list1=[]
+list2=[]
+
+IPS1_file=open(first,'r')
+IPS1_file.seek(0)
+for IP in IPS1_file.readlines():
+    m=IP.split()
+    for v in m:
+        list1.append(str(v))
+
+
+IPS2_file=open(second,'r')
+IPS2_file.seek(0)
+for IP in IPS2_file.readlines():
+    m=IP.split()
+    for v in m:
+        list2.append(str(v))
+
+
+list3=[i for i in list1 if i not in list2]
+list4=[i for i in list2 if i not in list1]
+list5=[i for i in list1 if i in list2]
+
+infile1=[]
+infile2=[]
+common=[]
+
+for line in list3:
+    if line.isspace():
+        continue
+    else:
+        infile1.append(str(line))
+
+for line in list4:
+    if line.isspace():
+        continue
+    else:
+        infile2.append(str(line))
+
+for line in list5:
+
+    if line.isspace():
+        continue
+    else:
+        common.append(str(line))
+
+if len(infile1)!=0:
+   print "in file1:"
+   print "\n".join(infile1)
+else:
+    print "Nothing is different in",first
+print"-----------------------------------------"
+if len(infile2)!=0:
+   print "in file2:"
+   print "\n".join(infile2)
+else:
+    print "Nothing is different in",second
+print "----------------------------------------"
+kk=raw_input("Do you want to show the common yes/no: ")
+
+if kk=="yes" or kk=="y" or kk=="YES" or kk=="Y" or kk=="Yes" or kk=="\n":
+   print "the common:"
+   print "\n".join(common)
+else:
+    pass
+
+print "----------------------------------------"
